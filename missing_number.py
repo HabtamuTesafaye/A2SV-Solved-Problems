@@ -1,9 +1,6 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        compliments = {}
-        for i in range(len(nums)):
-            compliment = target - nums[i]
-            if compliment in compliments:
-                return [compliments[compliment], i]
-            compliments[nums[i]] = i
-         
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        actual_sum = n * (n + 1) // 2
+        total_sum = sum(nums)
+        return actual_sum - total_sum
