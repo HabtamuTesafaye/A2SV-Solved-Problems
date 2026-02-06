@@ -9,7 +9,20 @@ class Solution:
         for word in words:
             w = word.lower()
             
-            if set(w).issubset(row1) or set(w).issubset(row2) or set(w).issubset(row3):
+            if w[0] in row1:
+                row = row1
+            elif w[0] in row2:
+                row = row2
+            else:
+                row = row3
+            
+            valid = True
+            for ch in w:
+                if ch not in row:
+                    valid = False
+                    break
+            
+            if valid:
                 result.append(word)
         
         return result
