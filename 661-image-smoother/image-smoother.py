@@ -1,21 +1,21 @@
 class Solution:
     def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
-        rows, cols =  len(img), len(img[0])
-
-        result = [[0] * cols for _ in range(rows)]
-
-        for row in range(rows):
-            for col in range(cols):
-                total_sum = 0
-                count = 0
-
-                # findd the neigboure
-                for i in range(row - 1, row + 2):
-                    for j in range(col - 1, col + 2):
-                        if 0 <= i < rows and 0 <= j < cols:
-                            total_sum += img[i][j]
-                            count += 1
-                
-                result[row][col] = total_sum // count
-
-        return result
+            m, n = len(img), len(img[0])
+            res = [[0] * n for _ in range(m)]
+            
+            for i in range(m):
+                for j in range(n):
+                    total, count = 0, 0
+                    
+                    # check all 3x3 neighbors
+                    for dx in [-1, 0, 1]:
+                        for dy in [-1, 0, 1]:
+                            ni, nj = i + dx, j + dy
+                            # check bounds
+                            if 0 <= ni < m and 0 <= nj < n:
+                                total += img[ni][nj]
+                                count += 1
+                    
+                    res[i][j] = total // count  # floor division
+            
+            return res
