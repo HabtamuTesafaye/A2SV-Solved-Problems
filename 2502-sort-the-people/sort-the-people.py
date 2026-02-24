@@ -1,13 +1,15 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
-        n = len(names)
-        for i in range(n):
-            max_index = i
-            for j in range(i + 1, n):
-                if heights[j] > heights[max_index]:
-                    max_index = j
+        people = list(zip(names, heights))
+        for i in range(1, len(people)):
+            key = people[i]
+            j = i - 1
 
-            names[i], names[max_index] = names[max_index], names[i]
-            heights[i], heights[max_index] = heights[max_index], heights[i]
+            # Compare by height (index 1) in descending order
+            while j >= 0 and people[j][1] < key[1]:
+                people[j + 1] = people[j]
+                j -= 1
+                
+            people[j + 1] = key
 
-        return names
+        return [name for name, height in people]
