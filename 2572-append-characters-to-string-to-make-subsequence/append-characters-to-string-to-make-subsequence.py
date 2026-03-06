@@ -1,13 +1,23 @@
 class Solution:
     def appendCharacters(self, s: str, t: str) -> int:
-        i , j = 0, 0
-        n , m = len(s), len(t)
+        # first , second = 0, 0
+        # n , m = len(s), len(t)
 
-        while i < n and j < m:
-            # find the common char and increment to get the chars to add to s from t 
-            if s[i] == t[j]:
-                j += 1
-                
-            i += 1
+        # while first < n and second < m:
+        #     # find the common char and increment to get the chars to add to s from t 
+        #     if s[first] == t[second]:
+        #         second += 1
 
-        return m - j
+        #     first += 1
+
+        # return m - second
+
+        second = 0
+        m = len(t)
+        for first in range(len(s)):
+            if second < m and  s[first] == t[second]:
+                second += 1
+
+        return m - second
+
+
