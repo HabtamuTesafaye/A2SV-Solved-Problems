@@ -1,0 +1,14 @@
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+        child_ptr, cookie_ptr = 0, 0
+
+        while child_ptr < len(g) and cookie_ptr < len(s):
+            if s[cookie_ptr] >= g[child_ptr]:
+                child_ptr += 1
+                cookie_ptr += 1
+            else:
+                cookie_ptr += 1
+
+        return child_ptr
