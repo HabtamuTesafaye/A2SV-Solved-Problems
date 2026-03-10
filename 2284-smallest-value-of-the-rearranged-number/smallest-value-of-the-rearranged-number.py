@@ -1,27 +1,16 @@
 class Solution:
     def smallestNumber(self, num: int) -> int:
-        s = str(num)
-
-        # Negative case
-        if s[0] == '-':
-            digits = list(s[1:])
-            digits.sort(reverse=True)
-            return -int("".join(digits))
-
-        # Positive case
-        digits = list(s)
-        digits.sort()
-
-        # If all digits are zero (like "0", "00")
-        if digits[-1] == '0':
+        if num == 0:
             return 0
+        
+        if num > 0:
+            digits = sorted(str(num))
 
-        i = 0
-        while i < len(digits) and digits[i] == '0':
-            i += 1
-
-        first = digits[i]
-        digits.pop(i)
-
-        result = first + "".join(digits)
-        return int(result)
+            for i, d in enumerate(digits):
+                if d != '0':
+                    digits[0], digits[i] = digits[i], digits[0]
+                    break
+            return int("".join(digits))
+        else:
+            digits = sorted(str(-num), reverse=True)
+            return -int(''.join(digits))
