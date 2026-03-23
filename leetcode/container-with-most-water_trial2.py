@@ -6,9 +6,9 @@ class Solution:
             # area = widht * height so width = right - left and height is the sorter wall from the left or right 
             area = (right - left ) * min(height[left], height[right])
             max_area = max(max_area, area)
-            if height[left] < height[right]:
-                left += 1
-            else:
+            if left > right:
                 right -= 1
+            else:
+                left += 1
         
         return max_area
