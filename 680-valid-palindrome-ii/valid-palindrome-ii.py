@@ -10,11 +10,9 @@ class Solution:
             return True
 
         left, right = 0, len(s) - 1
-        chars = list(s)
-        deleted = 0
         while left <= right:
-            if chars[left] != chars[right]:
-                return ispalindrom(chars[left + 1:right + 1]) or ispalindrom(chars[left:right])
+            if s[left] != s[right]:
+                return ispalindrom(s[left + 1:right + 1]) or ispalindrom(s[left:right])
             left += 1
             right -= 1
 
