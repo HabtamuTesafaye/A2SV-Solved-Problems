@@ -12,21 +12,33 @@ class Solution:
         if not head:
             return None
 
-        old_to_new = {}
         current = head
         while current:
-            old_to_new[current] = Node(current.val)
-            current = current.next
+            copy = Node(current.val)
+            copy.next = current.next
+            current.next = copy
+            current = copy.next
 
-        curr = head
-        while curr:
-            old_to_new[curr].random = old_to_new.get(curr.random)
-            old_to_new[curr].next = old_to_new.get(curr.next)
-            curr = curr.next
+        current2 = head
+        while current2:
+            if current2.random:
+                current2.next.random = current2.random.next
+            current2 = current2.next.next
+        
+        current3 = head
+        copy_head = head.next
 
-        return old_to_new[head]
+        while current3:
+            copy_val = current3.next
+            current3.next = copy_val.next
+            if copy_val.next:
+                copy_val.next = copy_val.next.next
+            current3 = current3.next
+
+        return copy_head
 
 
+        
 
 
 
