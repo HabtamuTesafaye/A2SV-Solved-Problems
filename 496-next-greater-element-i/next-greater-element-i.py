@@ -8,8 +8,8 @@ class Solution:
                 next_greater[prev] = num
             stack.append(num)
 
-            for num in stack:
-                next_greater[num] = -1
+        for num in stack:
+            next_greater[num] = -1
 
         return [next_greater[num] for num in nums1]
             
