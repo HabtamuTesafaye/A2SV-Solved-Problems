@@ -4,9 +4,10 @@ class Solution:
         stack = []
         for pos, s in cars:
             time = (target - pos) / s
+            
+            if stack and time <= stack[-1]:
+                continue
+            
             stack.append(time)
-
-            if len(stack) >= 2 and stack[-1] <= stack[-2]:
-                stack.pop()
 
         return len(stack)
