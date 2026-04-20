@@ -1,26 +1,21 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        count_stack = []
-        string_stack = []
+        stack = []     
         current = ""
         k = 0
 
-        for ch in s:
-            if ch.isdigit():
-                k = k * 10 + int(ch)
-
-            elif ch == "[":
-                count_stack.append(k)
-                string_stack.append(current)
+        for char in s:
+            if char.isdigit():
+                # handles multi-digit like 12[...]
+                k = k * 10 + int(char) 
+            elif char == '[':
+                stack.append((current, k)) 
                 current = ""
                 k = 0
-
-            elif ch == "]":
-                repeat = count_stack.pop()
-                prev = string_stack.pop()
-                current = prev + repeat * current
-
+            elif char == ']':
+                prev_str, repeat = stack.pop()
+                current = prev_str + current * repeat
             else:
-                current += ch
+                current += char          
 
         return current
