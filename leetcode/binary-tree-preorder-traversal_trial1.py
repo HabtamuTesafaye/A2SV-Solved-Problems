@@ -7,11 +7,11 @@
 class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
-        def postOrder(node):
+        def preOrder(node):
             if not node:
                 return
             result.append(node.val)
-            postOrder(node.left)
-            postOrder(node.right)
-        postOrder(root)
+            preOrder(node.left)
+            preOrder(node.right)
+        preOrder(root)
         return  result
